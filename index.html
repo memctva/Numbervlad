@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="EPK de Numbervlad — DJ de house, disco y acid en Ciudad de México. Trayectoria, galería de prensa, rider y contacto de booking.">
+<meta property="og:title" content="Numbervlad — EPK">
+<meta property="og:description" content="DJ de house, disco y acid en Ciudad de México. Fundador del colectivo Ñenguele.">
+<meta property="og:image" content="img/hero.jpg">
+<meta property="og:type" content="website">
+<style>
+:root{color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Numbervlad</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..100,400;85..100,500;85..100,600&family=Archivo+Black&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: una página que corre a un tempo real — el motor de BPM gobierna el movimiento;
+   tipografía ancha y curvas como estructura, no como adorno. Tema único: cabina de noche. */
+:root{
+  --negro:#120406; --vino:#250A0E; --crema:#F7E3C6;
+  --naranja:#F2601C; --rosa:#E0497F; --oro:#E8AE44;
+  --tenue:rgba(247,227,198,.46);
+  --display:"Archivo Black","Helvetica Neue",Arial Black,system-ui,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono","SF Mono",ui-monospace,Menlo,monospace;
+  --p:0; --k:0;                 /* fase del beat y golpe: los escribe el motor */
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+/* Archivo Black trae un solo peso: nada de negritas sintéticas */
+#intro .cnt,.engine .bpm,.name span,.claim p,.ladder li,.hito h3,.plaza h3,
+.galhead h2,.end .big{font-weight:400}
+body{background:var(--negro);color:var(--crema);font-family:var(--body);margin:0;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.06;
+  background-image:radial-gradient(var(--crema) .5px,transparent .5px);background-size:3px 3px}
+img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;
+  padding-left:max(18px,env(safe-area-inset-left,0px));
+  padding-right:max(18px,env(safe-area-inset-right,0px))}
+
+/* ---------- cuenta de entrada ---------- */
+#intro{position:fixed;inset:0;z-index:100;background:var(--negro);display:grid;place-items:center;
+  transition:opacity .45s ease,visibility .45s}
+#intro[hidden]{display:grid!important;opacity:0;visibility:hidden;pointer-events:none}
+#intro .cnt{font-family:var(--display);font-size:clamp(88px,25vw,300px);font-weight:800;
+  line-height:.8;letter-spacing:-.06em;color:var(--naranja);font-variant-numeric:tabular-nums}
+#intro .lbl{position:absolute;bottom:14%;left:0;right:0;text-align:center;font-family:var(--mono);
+  font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--oro)}
+
+/* ---------- motor de tempo ---------- */
+.engine{position:fixed;left:0;bottom:0;z-index:70;display:flex;align-items:center;gap:14px;
+  background:rgba(18,4,6,.82);backdrop-filter:blur(12px);
+  border-top:1px solid rgba(232,174,68,.35);border-right:1px solid rgba(232,174,68,.35);
+  border-radius:0 16px 0 0;
+  padding:12px max(16px,env(safe-area-inset-left,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.engine .bpm{font-family:var(--display);font-size:25px;font-weight:800;letter-spacing:-.04em;
+  line-height:1;min-width:64px;font-variant-numeric:tabular-nums}
+.engine .bpm i{font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.18em;
+  display:block;color:var(--oro);margin-top:5px}
+.engine input{appearance:none;-webkit-appearance:none;width:120px;height:2px;
+  background:rgba(247,227,198,.3);outline:0}
+.engine input:focus-visible{outline:2px solid var(--oro);outline-offset:6px}
+.engine input::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;
+  background:var(--naranja);cursor:pointer}
+.engine input::-moz-range-thumb{width:15px;height:15px;border:0;border-radius:50%;
+  background:var(--naranja);cursor:pointer}
+.dots{display:flex;gap:6px}
+.dots b{width:8px;height:8px;border-radius:50%;background:rgba(247,227,198,.2)}
+.dots b.on{background:var(--naranja)}
+
+.book{position:fixed;right:0;bottom:0;z-index:71;background:var(--naranja);color:var(--negro);
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  border:0;border-radius:16px 0 0 0;cursor:pointer;
+  padding:16px max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) 18px}
+
+/* ---------- portada ---------- */
+.hero{position:relative;padding-block:64px 150px;overflow:hidden}
+.strobe{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(68% 54% at 76% 34%,rgba(242,96,28,.48),transparent 70%);
+  opacity:calc(.2 + var(--k) * .5)}
+.arc{position:absolute;bottom:-12%;right:-18vw;width:min(92vw,780px);height:min(46vw,400px);
+  border-radius:50% 50% 0 0;border:1.5px solid rgba(232,174,68,.36);pointer-events:none;
+  transform:scale(calc(1 + var(--k) * .016))}
+.hero .wrap{position:relative;z-index:3}
+.meta{display:flex;flex-wrap:wrap;gap:6px 30px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--oro)}
+.meta b{color:var(--crema);font-weight:500}
+.grid2{display:grid;grid-template-columns:1.08fr .92fr;gap:40px;align-items:end;margin-top:26px}
+.grid2>*{min-width:0}
+.grid2>div:first-child{container-type:inline-size}
+/* el nombre va en un solo renglón: se mide contra su columna, no contra la ventana */
+.name{font-family:var(--display);line-height:.9;margin:0;display:flex;white-space:nowrap}
+.name span{font-size:clamp(34px,8.4vw,104px);font-weight:800;
+  letter-spacing:-.065em;text-transform:lowercase;transform-origin:left bottom}
+@supports(width:1cqw){.name span{font-size:14.6cqw}}
+.name .l1{color:var(--crema);transform:scaleY(calc(1 + var(--k) * .04))}
+.name .l2{color:var(--naranja);transform:scaleY(calc(1 + var(--k) * .07))}
+#wave{width:100%;height:84px;display:block;margin-top:22px;max-width:100%}
+.shot{position:relative;margin:0}
+.shot .f{overflow:hidden;border:1.5px solid var(--oro);
+  border-radius:50% 50% 10px 10px / 32% 32% 2% 2%;transform:translateY(calc(var(--k) * -7px))}
+.shot .f img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 34%;
+  filter:saturate(calc(1 + var(--k) * .28))}
+.shot figcaption{position:absolute;left:-8px;bottom:14px;background:var(--oro);color:var(--negro);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  padding:7px 11px;border-radius:5px}
+/* El bloque de abajo: la bio a la izquierda, los géneros como una escalera a la derecha */
+.claim{margin-top:44px;border-top:1.5px solid rgba(232,174,68,.42);padding-top:22px;
+  display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:26px 56px}
+.rot{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--oro);margin-bottom:14px}
+.claim p{font-family:var(--display);font-size:clamp(18px,2.4vw,26px);line-height:1.3;
+  letter-spacing:-.025em;max-width:34ch;font-weight:600;margin:0;text-wrap:balance}
+.claim p b{color:var(--rosa);font-weight:600}
+.ladder{list-style:none;margin:0;padding:0;border-top:1px solid rgba(247,227,198,.12)}
+.ladder li{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  padding:7px 0;border-bottom:1px solid rgba(247,227,198,.12);
+  font-family:var(--display);font-weight:800;text-transform:lowercase;
+  letter-spacing:-.03em;font-size:15px;color:var(--tenue)}
+.ladder li::after{content:"";width:18px;height:1px;background:rgba(247,227,198,.22);flex:none}
+.ladder li.pri{font-size:clamp(22px,2.6vw,30px);color:var(--crema);padding:9px 0}
+.ladder li.pri:first-child{color:var(--naranja)}
+.ladder li.pri::after{width:34px;background:var(--naranja);
+  transform:scaleX(calc(1 + var(--k) * .7));transform-origin:right}
+
+/* ---------- recintos ---------- */
+.sec{padding-block:104px 36px}
+.eyeb{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--naranja);margin-bottom:28px}
+/* El festival va aparte: es el dato que más pesa */
+.destacado{display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px;
+  border:1.5px solid rgba(232,174,68,.5);border-radius:0 0 999px 999px / 0 0 42px 42px;
+  padding:26px 30px 32px;margin-bottom:56px;
+  background:linear-gradient(180deg,rgba(242,96,28,.14),transparent 78%)}
+.destacado .tit{font-family:var(--display);font-size:clamp(26px,5.6vw,58px);line-height:.92;
+  letter-spacing:-.055em;text-transform:lowercase;font-weight:800;margin:0;flex:1 1 9ch;min-width:0}
+.destacado .tit em{font-style:normal;color:var(--naranja)}
+.destacado .det{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--oro);line-height:2}
+
+/* Dos fechas que pesan más que las demás, en dos renglones */
+.top2{display:grid;gap:14px;margin-bottom:34px}
+.hito{display:grid;grid-template-columns:auto 1fr;gap:0 14px;align-items:baseline;
+  border-left:2px solid var(--naranja);padding:4px 0 6px 16px}
+.hito h3{font-family:var(--display);font-size:clamp(19px,2.6vw,28px);font-weight:800;
+  letter-spacing:-.04em;text-transform:lowercase;margin:0;white-space:nowrap}
+.hito h3 em{font-style:normal;color:var(--naranja)}
+.hito p{grid-column:1/-1;margin:5px 0 0;font-size:13px;line-height:1.55;color:var(--tenue)}
+.hito p b{color:var(--crema);font-weight:500}
+.hito .sello{font-family:var(--mono);font-size:9.5px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--oro)}
+
+/* Ruta nacional en cuatro renglones: la línea baja por los discos */
+.ruta{position:relative}
+.ruta::before{content:"";position:absolute;left:19px;top:22px;bottom:26px;width:1px;
+  background:linear-gradient(180deg,var(--naranja),rgba(232,174,68,.4) 55%,rgba(247,227,198,.12))}
+.plaza{position:relative;z-index:1;display:grid;grid-template-columns:38px 1fr;gap:0 16px;
+  align-items:center;padding:13px 0;border-bottom:1px solid rgba(247,227,198,.1)}
+.plaza .node{width:38px;height:38px;border-radius:50%;background:var(--negro);
+  border:1.5px solid var(--oro);display:grid;place-items:center;
+  font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:-.03em;
+  font-variant-numeric:tabular-nums;transform:scale(calc(1 + var(--k) * .06))}
+.plaza:first-child .node{border-color:var(--naranja);color:var(--naranja);
+  box-shadow:0 0 0 calc(var(--k) * 6px) rgba(242,96,28,.16)}
+.plaza .body{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 14px;min-width:0}
+.plaza h3{font-family:var(--display);font-size:clamp(18px,2.4vw,26px);font-weight:800;
+  letter-spacing:-.04em;text-transform:lowercase;margin:0}
+.plaza .est{font-family:var(--mono);font-size:9.5px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--oro)}
+.plaza p{margin:0;flex:1 1 20ch;min-width:0;font-size:13px;line-height:1.5;
+  text-transform:lowercase;color:var(--tenue)}
+.plaza p b{color:var(--crema);font-weight:500}
+.plaza p i{font-style:normal;color:var(--naranja);padding:0 .2em}
+
+/* ---------- galería ---------- */
+.gal{padding-block:88px 36px}
+.galhead{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px}
+.galhead h2{font-family:var(--display);font-size:clamp(32px,7vw,76px);line-height:.9;
+  letter-spacing:-.055em;text-transform:lowercase;font-weight:800;margin:0}
+.galhead h2 em{font-style:normal;color:var(--naranja)}
+.galhead .note{font-family:var(--mono);font-size:10px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--oro)}
+.strip{margin-top:26px;display:flex;gap:16px;overflow-x:auto;
+  padding:4px max(18px,env(safe-area-inset-right,0px)) 22px max(18px,env(safe-area-inset-left,0px));
+  scroll-snap-type:x mandatory;cursor:grab;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.strip.drag{cursor:grabbing}
+.strip figure{flex:0 0 auto;scroll-snap-align:center;position:relative;overflow:hidden;margin:0;
+  border:1px solid rgba(232,174,68,.3);background:#0B0203}
+.strip figure img{height:100%;width:100%;object-fit:cover;pointer-events:none}
+.strip .w1{width:min(76vw,540px);aspect-ratio:3/2;max-width:100%}
+.strip .w2{width:min(52vw,340px);aspect-ratio:2/3;max-width:100%}
+.strip .w3{width:min(46vw,300px);aspect-ratio:1;max-width:100%}
+.strip figure b{position:absolute;left:10px;bottom:9px;font-family:var(--mono);font-size:9px;
+  font-weight:400;letter-spacing:.14em;color:var(--oro);text-shadow:0 1px 4px #000}
+.credit{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--tenue);margin:4px 0 0}
+
+/* ---------- ficha y cierre ---------- */
+.tech{margin-top:76px;display:flex;flex-wrap:wrap;gap:34px 64px;
+  border-top:1.5px solid rgba(232,174,68,.42);padding-top:26px}
+.tech div{max-width:780px;flex:1 1 100%;min-width:0}
+.tech h3{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--oro);margin:0 0 12px}
+.tech p{font-size:15.5px;line-height:1.68;margin:0}
+.tech small{display:block;margin-top:11px;font-size:11.5px;line-height:1.5;color:var(--tenue)}
+/* El equipo, en foto: el técnico lo reconoce sin leer */
+.gear{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px;width:100%}
+.gear figure{margin:0;border:1px solid rgba(232,174,68,.28);background:#150507;overflow:hidden}
+.gear img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#150507;padding:10px}
+.gear figcaption{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--oro);padding:9px 11px 11px;border-top:1px solid rgba(232,174,68,.2);line-height:1.6}
+.gear figcaption b{display:block;color:var(--crema);font-weight:500;font-size:10.5px;letter-spacing:.1em}
+.end{margin-block:80px 136px;display:flex;flex-wrap:wrap;align-items:baseline;gap:14px 30px}
+.end .big{font-family:var(--display);font-size:clamp(32px,7.6vw,92px);line-height:.84;
+  letter-spacing:-.06em;text-transform:lowercase;font-weight:800;
+  background:linear-gradient(96deg,var(--naranja),var(--rosa));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.mailbox{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.mailbox code{font-family:var(--mono);font-size:13px;color:var(--crema);
+  border-bottom:2px solid var(--naranja);padding-bottom:3px;user-select:all}
+.cpy{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  background:none;border:1px solid rgba(232,174,68,.5);color:var(--oro);
+  padding:7px 11px;border-radius:5px;cursor:pointer}
+:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+
+@media(max-width:880px){
+  .claim{grid-template-columns:1fr;gap:30px}
+  .ladder li.pri{font-size:24px}
+  .gear{grid-template-columns:1fr 1fr}
+  .gear figure:first-child{grid-column:1/-1}
+  .grid2{grid-template-columns:1fr;gap:24px;align-items:start}
+  .shot{max-width:440px}
+  .shot .f img{aspect-ratio:1}
+  .engine input{width:88px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Letra chica, más legible: nada por debajo de 12px */
+.meta{font-size:12.5px;letter-spacing:.14em}
+.rot,.eyeb,.tech h3,.galhead .note{font-size:12.5px;letter-spacing:.18em}
+.hito .sello,.plaza .est{font-size:12px;letter-spacing:.13em}
+.hito p,.plaza p{font-size:15px;line-height:1.6}
+.ladder li{font-size:18px}
+.strip figure b,.credit{font-size:12px;letter-spacing:.1em}
+.gear figcaption{font-size:12px;letter-spacing:.1em}
+.gear figcaption b{font-size:13.5px;letter-spacing:.07em;margin-bottom:3px}
+.shot figcaption{font-size:11.5px;letter-spacing:.13em}
+.engine .bpm i{font-size:11px}
+.engine .bpm{font-size:28px}
+.book{font-size:12.5px;letter-spacing:.15em}
+.mailbox code{font-size:16px}
+.cpy{font-size:12px}
+#intro .lbl{font-size:12.5px;letter-spacing:.24em}
+</style>
+</head>
+<body>
+<div id="intro"><div class="cnt">4</div><div class="lbl">Contando entrada</div></div>
+
+<div class="engine">
+  <div class="bpm"><span id="bpmv">124</span><i>BPM</i></div>
+  <input id="bpms" type="range" min="120" max="130" step="1" value="124" aria-label="Tempo de la página">
+  <div class="dots"><b></b><b></b><b></b><b></b></div>
+</div>
+<button class="book" id="tobook" type="button">Booking ↓</button>
+
+<header class="hero">
+  <div class="strobe"></div><div class="arc"></div>
+  <div class="wrap">
+    <div class="meta">
+      <span>DJ · <b>Ciudad de México</b></span>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <h1 class="name"><span class="l1">number</span><span class="l2">vlad</span></h1>
+        <canvas id="wave" aria-hidden="true"></canvas>
+      </div>
+      <figure class="shot">
+        <div class="f"><img src="img/hero.jpg" alt="Numbervlad tocando en cabina"></div>
+        <figcaption>En cabina · CDMX</figcaption>
+      </figure>
+    </div>
+
+    <div class="claim">
+      <div>
+        <div class="rot">El proyecto</div>
+        <p>Fundador del colectivo <b>Ñenguele</b>, donde construye comunidad en CDMX desde los dos lados: la cabina y la pista. Cura house para bailar, y lo abre hacia disco, deep, indie dance y minimal según la vibra que se presente en la noche y la pista de baile.</p>
+      </div>
+      <div>
+        <div class="rot">Qué pone</div>
+        <ul class="ladder">
+          <li class="pri">house</li>
+          <li class="pri">disco</li>
+          <li>deep house</li>
+          <li>acid house</li>
+          <li>indie dance</li>
+          <li>minimal house</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="sec"><div class="wrap">
+  <div class="eyeb">Dónde ha tocado · 13 recintos · 4 estados · 2023—2026</div>
+  <div class="top2">
+    <div class="hito">
+      <h3>festival <em>bahidora</em></h3><span class="sello">Silent Party · 2025</span>
+      <p>El escenario más grande donde ha tocado.</p>
+    </div>
+    <div class="hito">
+      <h3><em>partydazo</em> · ñenguele</h3><span class="sello">Foro Tonalá · 11 jun 2026</span>
+      <p>Fiesta del colectivo por la apertura del Mundial en México, junto a <b>Exos</b>, <b>Celice Monnette</b> y <b>Cinema Paradisco</b>.</p>
+    </div>
+  </div>
+
+  <div class="ruta">
+    <div class="plaza">
+      <div class="node">10</div>
+      <div class="body">
+        <h3>ciudad de méxico</h3><span class="est">Base</span>
+        <p><b>foro tonalá</b> <i>·</i> <b>bardo speakeasy</b> <i>·</i> diablo negro <i>·</i> musak <i>·</i>
+        balam house <i>·</i> bonito club <i>·</i> dharma rooftop <i>·</i> hookah lounge <i>·</i>
+        cervecería júpiter <i>·</i> ñenguele</p>
+      </div>
+    </div>
+    <div class="plaza">
+      <div class="node">1</div>
+      <div class="body">
+        <h3>puerto escondido</h3><span class="est">Oaxaca</span>
+        <p><b>marandwana</b></p>
+      </div>
+    </div>
+    <div class="plaza">
+      <div class="node">1</div>
+      <div class="body">
+        <h3>san luis potosí</h3><span class="est">SLP</span>
+        <p><b>club toxic</b></p>
+      </div>
+    </div>
+    <div class="plaza">
+      <div class="node">1</div>
+      <div class="body">
+        <h3>puebla</h3><span class="est">Puebla</span>
+        <p><b>radio veintiocho</b></p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="gal">
+  <div class="wrap galhead">
+    <h2>galería <em>numbervl4d</em></h2>
+    <!-- SLOT: enlace a la carpeta con las fotos en alta resolución -->
+    <div class="note">Arrastra →</div>
+  </div>
+  <div class="strip" id="strip">
+    <figure class="w1"><img src="img/g1.jpg" alt="Retrato en calle, CDMX" loading="lazy"><b>01</b></figure>
+    <figure class="w2"><img src="img/g2.jpg" alt="Cabina de club" loading="lazy"><b>02</b></figure>
+    <figure class="w3"><img src="img/g3.jpg" alt="Tocando en cabina" loading="lazy"><b>03</b></figure>
+    <figure class="w1"><img src="img/g6.jpg" alt="Setup de cabina" loading="lazy"><b>04</b></figure>
+    <figure class="w3"><img src="img/g4.jpg" alt="Retrato nocturno" loading="lazy"><b>05</b></figure>
+    <figure class="w2"><img src="img/g7.jpg" alt="Retrato con mural" loading="lazy"><b>06</b></figure>
+    <figure class="w3"><img src="img/g5.jpg" alt="Retrato" loading="lazy"><b>07</b></figure>
+    <figure class="w1"><img src="img/g8.jpg" alt="Cabina, larga exposición" loading="lazy"><b>08</b></figure>
+  </div>
+  <!-- SLOT: crédito del fotógrafo -->
+  <div class="wrap"><p class="credit">Fotografías: [ crédito pendiente ]</p></div>
+</section>
+
+<section><div class="wrap">
+  <div class="tech">
+    <div>
+      <h3>Rider</h3>
+      <div class="gear">
+        <figure>
+          <img src="img/gear-cdj.jpg" alt="Pioneer CDJ-2000 nexus" loading="lazy">
+          <figcaption><b>Pioneer CDJ</b>2000NXS2 o 3000 · 2 unidades</figcaption>
+        </figure>
+        <figure>
+          <img src="img/gear-xone.jpg" alt="Allen &amp; Heath Xone:96" loading="lazy">
+          <figcaption><b>Allen &amp; Heath</b>Xone:96</figcaption>
+        </figure>
+        <figure>
+          <img src="img/gear-djm.jpg" alt="Pioneer DJM-V10" loading="lazy">
+          <figcaption><b>Pioneer DJM</b>V10 · alternativa de mezcladora</figcaption>
+
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="end" id="booking">
+    <span class="big">agenda abierta</span>
+    <div class="mailbox">
+      <code id="mail">vladi.cirigo@gmail.com</code>
+      <button class="cpy" id="cpy" type="button">Copiar</button>
+    </div>
+  </div>
+</div></section>
+
+<script>
+(function(){
+  const root=document.documentElement;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let bpm=124,t0=performance.now(),lastBeat=-1;
+  const dots=[...document.querySelectorAll('.dots b')];
+  const cv=document.getElementById('wave'),cx=cv.getContext('2d');
+
+  function sizeWave(){const r=cv.getBoundingClientRect();
+    cv.width=Math.max(1,r.width*devicePixelRatio);cv.height=Math.max(1,r.height*devicePixelRatio);}
+  addEventListener('resize',sizeWave);sizeWave();
+
+  function frame(now){
+    const spb=60000/bpm, beats=(now-t0)/spb, p=beats%1;
+    const k=Math.pow(1-p,3.2);                       // ataque y caída, como un kick
+    root.style.setProperty('--p',p.toFixed(3));
+    root.style.setProperty('--k',(reduce?0:k).toFixed(3));
+    const b=Math.floor(beats)%4;
+    if(b!==lastBeat){lastBeat=b;dots.forEach((d,i)=>d.classList.toggle('on',i===b));}
+
+    const w=cv.width,h=cv.height,mid=h/2;
+    cx.clearRect(0,0,w,h);
+    cx.lineWidth=1.6*devicePixelRatio;
+    cx.strokeStyle='rgba(232,174,68,.85)';
+    cx.beginPath();
+    const freq=(bpm/120)*7, amp=mid*(.22+k*.62);
+    for(let x=0;x<=w;x+=2){
+      const n=x/w, env=Math.sin(n*Math.PI);
+      const y=mid+Math.sin(n*freq*Math.PI*2+beats*2.4)*amp*env;
+      x?cx.lineTo(x,y):cx.moveTo(x,y);
+    }
+    cx.stroke();
+    cx.fillStyle='rgba(242,96,28,'+(.25+k*.75)+')';
+    cx.fillRect(0,mid-devicePixelRatio,w*(beats%4)/4,2*devicePixelRatio);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  const sl=document.getElementById('bpms'),out=document.getElementById('bpmv');
+  sl.addEventListener('input',()=>{bpm=+sl.value;out.textContent=bpm;});
+
+  const intro=document.getElementById('intro'),cnt=intro.querySelector('.cnt');
+  function kill(){intro.hidden=true;}
+  if(reduce){kill();}
+  else{
+    let n=4;const spb=60000/bpm;
+    const tick=setInterval(()=>{n--;if(n<1){clearInterval(tick);kill();return;}cnt.textContent=n;},spb);
+    setTimeout(kill,spb*4+300);
+  }
+  intro.addEventListener('click',kill);
+
+  document.getElementById('tobook').addEventListener('click',()=>{
+    document.getElementById('booking').scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+  });
+
+  const cpy=document.getElementById('cpy');
+  cpy.addEventListener('click',()=>{
+    const t=document.getElementById('mail').textContent.trim();
+    const done=()=>{cpy.textContent='Copiado';setTimeout(()=>cpy.textContent='Copiar',1600);};
+    try{navigator.clipboard.writeText(t).then(done,()=>{
+      const r=document.createRange();r.selectNodeContents(document.getElementById('mail'));
+      const s=getSelection();s.removeAllRanges();s.addRange(r);cpy.textContent='Selecciona y copia';
+      setTimeout(()=>cpy.textContent='Copiar',2200);
+    });}catch(e){/* sin portapapeles: el texto queda seleccionable */}
+  });
+
+  const st=document.getElementById('strip');
+  let down=false,sx=0,s0=0;
+  st.addEventListener('pointerdown',e=>{down=true;sx=e.clientX;s0=st.scrollLeft;st.classList.add('drag');});
+  addEventListener('pointerup',()=>{down=false;st.classList.remove('drag');});
+  st.addEventListener('pointermove',e=>{if(down)st.scrollLeft=s0-(e.clientX-sx);});
+})();
+</script>
+</body>
+</html>
